@@ -1,0 +1,16 @@
+#icons_container {
+  display: flex;
+  align-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: auto;
+  background-color: red;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  background-color: lime;
+  margin: 5px;
+}
