@@ -5,7 +5,24 @@
 // Utilizzando la funzione forEach e il template
 // literal, visualizzare in pagina tutte le icone con il
 // proprio nome.
-
+// <i class="fas fa-dog"></i>
+// <i class="fas fa-fish"></i>
+// <i class="fas fa-dragon"></i>
+// <i class="fas fa-hippo"></i>
+// <i class="fas fa-spider"></i>
+//
+// <i class="fas fa-tractor"></i>
+// <i class="fas fa-truck"></i>
+// <i class="fas fa-wheelchair"></i>
+// <i class="fas fa-tram"></i>
+// <i class="fas fa-space-shuttle"></i>
+// <i class="fas fa-fighter-jet"></i>
+// <i class="fas fa-helicopter"></i>
+//
+// <i class="fas fa-apple-alt"></i>
+// <i class="fas fa-carrot"></i>
+// <i class="fas fa-lemon"></i>
+// <i class="fas fa-pepper-hot"></i>
 
 $(document).ready(
   function() {
@@ -109,9 +126,13 @@ $(document).ready(
     ];
 
     var iconsContainer = $('#icons_container');
-    console.log(iconsContainer);
     icons.forEach((element) => {
-      iconsContainer.append(`<div class='icon'>${element.name}</div>`);
+      iconsContainer.append(`
+        <div class='icon'>
+          <i class="fas fa-${element.name}"></i>
+        </div>
+        `);
+        console.log(element);
     });
 
   }
