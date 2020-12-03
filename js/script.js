@@ -6,6 +6,19 @@
 // literal, visualizzare in pagina tutte le icone con il
 // proprio nome.
 
+// milestone 2:
+// definire un array di colori e associare ad ogni
+// tipo di icona un colore.
+// Visualizzare le icone di colore diverso in base al
+// tipo.
+
+// milestone 3:
+// aggiungere una select per filtrare le icone in
+// base al tipo.
+// Popolare le options della select dinamicamente
+// e, ogni volta che cambia il valore selezionato,
+// visualizzare le icone corrispondenti.
+
 
 $(document).ready(
   function() {
@@ -108,42 +121,57 @@ $(document).ready(
       },
     ];
 
-
-
-    // milestone 2:
-    // definire un array di colori e associare ad ogni
-    // tipo di icona un colore.
-    // Visualizzare le icone di colore diverso in base al
-    // tipo.
-
     const colors = ['coral', 'blue', 'red'];
     const types = [];
-
+    // creazione array types con all'interno il ogni types dell'array icons (non ripetuti)
     icons.forEach((element) => {
       if (types.includes(element.type) == false) {
         console.log(types.includes(element) == false);
         types.push(element.type);
       }
     });
-
+    // assegnazione colore tramiete indice
     icons.forEach((element) => {
       let index = types.indexOf(element.type); //ritorna l'indice dell'elemento nell'array
       element.color = colors[index];
     });
     console.log(icons);
 
+    // scorro tutto l'array icon e creo l'HTML con icona e colore personalizzato
+     var iconsContainer = $('#icons_container');
+    iconsGenerator(icons, iconsContainer);
 
-    var iconsContainer = $('#icons_container');
-    icons.forEach((element) => {
-      iconsContainer.append(`
-        <div class="icon">
-          <i class="fas fa-${element.name}" style='color:${element.color};'></i>
-          <div>${element.name}</div>
-        </div>
+    let select = $('select');
+
+    types.forEach((element) => {
+      select.append(`
+        <option value="${[element]}">${[element]}</option>
         `);
     });
-
-
-
+    select.change(
+      function() {
+        let selectedType = $(this).val();
+        if ($(this) == '') {
+          iconsGenerator(icons, iconsContainer);
+        } else {
+          
+        }
+      }
+    );
   }
 );
+
+/*----------------------------FUNCTION--------------------------------------------*/
+
+function iconsGenerator (array, htmlObj) {
+  htmlObj.html('');
+  array.forEach((element) => {
+    htmlObj.append(`
+      <div class="icon">
+      <i class="fas fa-${element.name}" style='color:${element.color};'></i>
+      <div>${element.name}</div>
+      </div>
+      `);
+    });
+    return htmlObj;
+  }
